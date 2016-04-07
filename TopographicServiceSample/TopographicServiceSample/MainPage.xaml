@@ -7,8 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     mc:Ignorable="d">
-    <Page.BottomAppBar>
-        <CommandBar>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <maps:MapControl x:Name="Map"/>
+        <ProgressRing Width="60" Height="60" IsActive="False" x:Name="ProgressRing"/>
+
+        <CommandBar Grid.Row="1" x:Name="CommandBar">
             <AppBarButton Label="Save" Icon="Save" Click="OnSave"/>
             <AppBarButton Label="3D Builder" Click="On3DBuilder">
                 <AppBarButton.Icon>
@@ -21,8 +28,6 @@
                 </AppBarButton.Icon>
             </AppBarButton>
         </CommandBar>
-    </Page.BottomAppBar>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <maps:MapControl x:Name="Map"/>
+
     </Grid>
 </Page>

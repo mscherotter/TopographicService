@@ -214,9 +214,9 @@ namespace TopographicServiceSample
 
         private void SetButtonsEnabled(bool isEnabled)
         {
-            var commandBar = this.BottomAppBar as CommandBar;
+            ProgressRing.IsActive = !isEnabled;
 
-            foreach (var button in commandBar.PrimaryCommands.OfType<AppBarButton>())
+            foreach (var button in CommandBar.PrimaryCommands.OfType<AppBarButton>())
             {
                 button.IsEnabled = isEnabled;
             }
