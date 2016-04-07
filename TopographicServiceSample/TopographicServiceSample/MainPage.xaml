@@ -7,8 +7,22 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     mc:Ignorable="d">
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Label="Save" Icon="Save" Click="OnSave"/>
+            <AppBarButton Label="3D Builder" Click="On3DBuilder">
+                <AppBarButton.Icon>
+                    <BitmapIcon UriSource="Assets/3DBuilder.png"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Label="3D Print" Click="OnPrint">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph=""/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <maps:MapControl x:Name="Map"/>
-        <Button Content="Print" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="OnPrint"/>
     </Grid>
 </Page>
