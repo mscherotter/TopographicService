@@ -1,8 +1,17 @@
 # Topographic Service
 Enable your Universal Windows App to use the [Topographic](https://www.microsoft.com/store/apps/9nblggh5xrh3) app for Windows to generate 3D topographic models of any location on Earth.
 ## Sample
+The [TopographicServiceSample](https://github.com/mscherotter/TopographicService/tree/master/TopographicServiceSample) 
+project contains the [Topographic.Service](https://github.com/mscherotter/TopographicService/blob/master/TopographicServiceSample/TopographicServiceSample/Topographic.Service.cs) 
+class which has all the code to communicate with the Topographic app.  
+
+If you want to use the Topographic app service, then you should sign up with 
+the [Microsoft Affiliate Program](http://microsoftaffiliates.com/) so you can earn referral revenue.  Watch [this
+video](https://channel9.msdn.com/Blogs/Windows-Store/Using-the-Microsoft-Affiliate-Program-to-earn-additional-7-on-Windows-Store-sales) for more details.
+
 See the [sample code](https://github.com/mscherotter/TopographicService/blob/master/TopographicServiceSample/TopographicServiceSample/PrintSamples.cs) 
 to see how easy it is to generate Topographic maps given any 4 lat/long coordinates and an optional image.
+
 `
 namespace TopographicServiceSample
 {
@@ -18,8 +27,8 @@ namespace TopographicServiceSample
             {
                 SouthLatitude = 36.0915,
                 WestLongitude = -112.1615,
-                NorthLatitude = 36.118083698675036,
-                EastLongitude = -112.12408086284995,
+                NorthLatitude = 36.1180,
+                EastLongitude = -112.1240,
             };
 
             var file = await Topographic.Service.GenerateTopographicModelAsync(parameters);
