@@ -8,11 +8,13 @@ class which has all the code to communicate with the Topographic app.
 If you want to use the Topographic app service, then you should sign up with 
 the [Microsoft Affiliate Program](http://microsoftaffiliates.com/) so you can earn referral revenue.  Watch [this
 video](https://channel9.msdn.com/Blogs/Windows-Store/Using-the-Microsoft-Affiliate-Program-to-earn-additional-7-on-Windows-Store-sales) for more details.
+Once you have signed up with the Microsoft Affiliate Program, add the [Topographic.Service](https://github.com/mscherotter/TopographicService/blob/master/TopographicServiceSample/TopographicServiceSample/Topographic.Service.cs) file to your project
+and modify the **ProgramId** and **SiteId** constants at the top of the file.
 
 See the [sample code](https://github.com/mscherotter/TopographicService/blob/master/TopographicServiceSample/TopographicServiceSample/PrintSamples.cs) 
 to see how easy it is to generate Topographic maps given any 4 lat/long coordinates and an optional image.
 
-```
+```cs
 namespace TopographicServiceSample
 {
     using System;
