@@ -12,7 +12,7 @@ video](https://channel9.msdn.com/Blogs/Windows-Store/Using-the-Microsoft-Affilia
 See the [sample code](https://github.com/mscherotter/TopographicService/blob/master/TopographicServiceSample/TopographicServiceSample/PrintSamples.cs) 
 to see how easy it is to generate Topographic maps given any 4 lat/long coordinates and an optional image.
 
-`
+```
 namespace TopographicServiceSample
 {
     using System;
@@ -42,5 +42,5 @@ namespace TopographicServiceSample
         }
     }
 }
-`
+```
 
