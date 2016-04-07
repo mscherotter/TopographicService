@@ -46,4 +46,5 @@ namespace TopographicServiceSample
 }
 ```
 ![Grand Canyon Topographic Map](https://raw.githubusercontent.com/mscherotter/TopographicService/master/Grand%20Canyon.png "Grand Canyon topographic model created by Topographic app service")
+
 [Download on Thingiverse](http://www.thingiverse.com/thing:1471857)
