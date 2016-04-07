@@ -60,26 +60,32 @@
         /// Generate a 3MF file that contains a 3D topographic model with an 
         /// optional map printed on the top
         /// </summary>
-        /// <param name="southLatitude">south latitude in WGS84 coordinates</param>
-        /// <param name="westLongitude">west longitude in WGS84 coordinates</param>
-        /// <param name="northLatitude">north latitude in WGS84 coordinates</param>
-        /// <param name="eastLongitude">east longitude in WGS84 coordinates</param>
-        /// <param name="mapImage">(optional) the image of a map that will be 
-        /// put on top of the model</param>
+        /// <param name="parameters">the map generation paramters</param>
         /// <example>
-        /// // this created a 3MF file of Hawaii and then send it to 3D Builder to print
-        /// var file = await Topographic.Service.GenerateTopographicModelAsync(18.8749,-156.2731,20.3203,-154.7388, mapImage);
-        /// 
-        /// var PackageFamilyName3DBuilder = "Microsoft.3DBuilder_8wekyb3d8bbwe";
-        /// 
-        /// var options = new LauncherOptions
+        /// Create a topographic map of the Grand Canyon
+        /// <code>
+        /// var parameters = new Topographic.Service.Parameters
         /// {
-        ///     TargetApplicationPackageFamilyName = PackageFamilyName3DBuilder,
-        ///     FallbackUri = new Uri("ms-windows-store:PDP?PFN=" + PackageFamilyName3DBuilder);
+        ///        SouthLatitude = 36.0915,
+        ///        WestLongitude = -112.1615,
+        ///        NorthLatitude = 36.1180,
+        ///        EastLongitude = -112.1240,
         /// };
         /// 
-        /// await Launcher.LaunchFileAsync(file);</example>
-        /// <returns>a new 3MF file</returns>
+        /// var file = await Topographic.Service.GenerateTopographicModelAsync(parameters);
+        /// 
+        /// if (file != nulll)
+        /// {
+        ///     var options = new LauncherOptions
+        ///     {
+        ///         TargetApplicationPackageFamilyName = "Microsoft.3DBuilder_8wekyb3d8bbwe"
+        ///     };
+        /// 
+        ///     await Launcher.LaunchFileAsync(file);
+        /// }
+        /// </code>
+        /// </example>
+        /// <returns>An async task with a new 3MF file or null if the operation fails</returns>
         public static async Task<StorageFile> GenerateTopographicModelAsync(
             Parameters parameters)
         {
@@ -108,12 +114,17 @@
 
                 if (response.Status == AppServiceResponseStatus.Success)
                 {
-                    var token = response.Message["FileToken"] as string;
+                    object token;
 
-                    // this is a 3MF file that you can now display, edit and print
-                    var file = await SharedStorageAccessManager.RedeemTokenForFileAsync(token);
+                    if (response.Message.TryGetValue("FileToken", out token))
+                    {
+                        var fileToken = token.ToString();
 
-                    return file;
+                        // this is a 3MF file that you can now display, edit and print
+                        var file = await SharedStorageAccessManager.RedeemTokenForFileAsync(fileToken);
+
+                        return file;
+                    }
                 }
             }
 
