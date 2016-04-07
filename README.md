@@ -12,7 +12,7 @@ Once you have signed up with the Microsoft Affiliate Program, add the [Topograph
 and modify the **ProgramId** and **SiteId** constants at the top of the file.
 
 See the [sample code](https://github.com/mscherotter/TopographicService/blob/master/TopographicServiceSample/TopographicServiceSample/PrintSamples.cs) 
-to see how easy it is to generate Topographic maps given any 4 lat/long coordinates and an optional image.
+to see how easy it is to generate Topographic maps given any 2 lat/long coordinates and an optional image.
 
 ```cs
 namespace TopographicServiceSample
