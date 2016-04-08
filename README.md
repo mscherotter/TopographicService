@@ -5,12 +5,13 @@ The [TopographicServiceSample](https://github.com/mscherotter/TopographicService
 project contains the [Topographic.Service](https://github.com/mscherotter/TopographicService/blob/master/TopographicServiceSample/TopographicServiceSample/Topographic.Service.cs) 
 class which has all the code to communicate with the Topographic app.  
 
-If you want to use the Topographic app service
-1. Watch [this video](https://channel9.msdn.com/Blogs/Windows-Store/Using-the-Microsoft-Affiliate-Program-to-earn-additional-7-on-Windows-Store-sales) on the Microsoft Affiliate Program.
-2. Sign up with the [Microsoft Affiliate Program](http://microsoftaffiliates.com/) so you can earn referral revenue.  
-3. Once you have signed up with the Microsoft Affiliate Program, add the [Topographic.Service](https://github.com/mscherotter/TopographicService/blob/master/TopographicServiceSample/TopographicServiceSample/Topographic.Service.cs) file to your project
-4. Modify the **ProgramId** and **SiteId** constants at the top of the file.
-5. Optionally modify the **Localizable Strings** at the top of the Topographic.Service class to use localizable resources.
+If you want to use the Topographic app service, follow these steps:
+
+1.  Watch [this video](https://channel9.msdn.com/Blogs/Windows-Store/Using-the-Microsoft-Affiliate-Program-to-earn-additional-7-on-Windows-Store-sales) on the Microsoft Affiliate Program.
+2.  Sign up with the [Microsoft Affiliate Program](http://microsoftaffiliates.com/) so you can earn referral revenue.  
+3.  Once you have signed up with the Microsoft Affiliate Program, add the [Topographic.Service](https://github.com/mscherotter/TopographicService/blob/master/TopographicServiceSample/TopographicServiceSample/Topographic.Service.cs) file to your project
+4.  Modify the **ProgramId** and **SiteId** constants at the top of the file.
+5.  Optionally modify the **Localizable Strings** at the top of the Topographic.Service class to use localizable resources.
 
 See the [sample code](https://github.com/mscherotter/TopographicService/blob/master/TopographicServiceSample/TopographicServiceSample/PrintSamples.cs) 
 to see how easy it is to generate Topographic maps given any 2 lat/long coordinates and an optional image.
