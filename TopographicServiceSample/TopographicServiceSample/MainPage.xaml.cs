@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -219,6 +221,79 @@ namespace TopographicServiceSample
             foreach (var button in CommandBar.PrimaryCommands.OfType<AppBarButton>())
             {
                 button.IsEnabled = isEnabled;
+            }
+        }
+
+        /// <summary>
+        /// Launch Topographic to open the print dialog with model ready to print
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void OnProtocolActivation(object sender, RoutedEventArgs e)
+        {
+            var uriString = string.Format(
+                CultureInfo.InvariantCulture,
+                "topographic:southLatitude={0}&westLongitude={1}&northLatitude={2}&eastLongitude={3}&quality=34",
+                this._bottomLeft.Position.Latitude,
+                this._bottomLeft.Position.Longitude,
+                this._topRight.Position.Latitude,
+                this._topRight.Position.Longitude);
+
+            var uri = new Uri(uriString);
+
+            var options = new LauncherOptions
+            {
+                PreferredApplicationDisplayName = "Topographic",
+                TargetApplicationPackageFamilyName = Topographic.Service.PackageFamilyName,
+                PreferredApplicationPackageFamilyName = Topographic.Service.PackageFamilyName
+            };
+
+            await Launcher.LaunchUriAsync(uri, options);
+        }
+
+        /// <summary>
+        /// Launch Topographic for results to return the model to the calling app
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void OnProtocolActivationForResults(object sender, RoutedEventArgs e)
+        {
+            await PrepareForPrintingAsync();
+
+            var token = SharedStorageAccessManager.AddFile(this._imageFile);
+
+            var uriString = string.Format(
+                CultureInfo.InvariantCulture,
+                "topographic:southLatitude={0}&westLongitude={1}&northLatitude={2}&eastLongitude={3}&quality=34&imageToken={4}",
+                this._bottomLeft.Position.Latitude,
+                this._bottomLeft.Position.Longitude,
+                this._topRight.Position.Latitude,
+                this._topRight.Position.Longitude,
+                token);
+
+            var uri = new Uri(uriString);
+
+            var options = new LauncherOptions
+            {
+                PreferredApplicationDisplayName = "Topographic",
+                TargetApplicationPackageFamilyName = Topographic.Service.PackageFamilyName,
+                PreferredApplicationPackageFamilyName = Topographic.Service.PackageFamilyName
+            };
+
+            var results = await Launcher.LaunchUriForResultsAsync(uri, options);
+
+            if (results.Status == LaunchUriStatus.Success)
+            {
+                object value;
+
+                if (results.Result.TryGetValue("FileToken", out value))
+                {
+                    var fileToken = value.ToString();
+
+                    var file3D = await SharedStorageAccessManager.RedeemTokenForFileAsync(fileToken);
+
+                    await Launcher.LaunchFileAsync(file3D);
+                }
             }
         }
     }

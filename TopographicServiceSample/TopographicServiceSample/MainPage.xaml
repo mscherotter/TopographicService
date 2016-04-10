@@ -27,6 +27,14 @@
                     <FontIcon Glyph=""/>
                 </AppBarButton.Icon>
             </AppBarButton>
+            <AppBarButton Label="Protocol" Icon="Switch">
+                <AppBarButton.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="Protocol activation" Click="OnProtocolActivation"/>
+                        <MenuFlyoutItem Text="Protocol activation w/results" Click="OnProtocolActivationForResults"/>
+                    </MenuFlyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
         </CommandBar>
 
     </Grid>

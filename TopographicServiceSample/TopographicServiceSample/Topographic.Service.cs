@@ -46,7 +46,7 @@
         /// <summary>
         /// Do not change this
         /// </summary>
-        private const string PackageFamilyName = "49752MichaelS.Scherotter.Topographic_9eg5g21zq32qm";
+        public const string PackageFamilyName = "49752MichaelS.Scherotter.Topographic_9eg5g21zq32qm";
         private Printing3D3MFPackage _package;
         private Parameters _parameters;
         #endregion
